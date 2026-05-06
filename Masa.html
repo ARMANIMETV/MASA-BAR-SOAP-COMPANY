@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MASA — Pure Handcrafted Soap</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- NAV -->
+  <nav id="mainNav">
+    <a href="#" class="nav-logo">MASA</a>
+    <ul class="nav-links">
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#benefits">Our Promise</a></li>
+      <li><a href="#ingredients">Ingredients</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="nav-icon-btn"
+        onclick="document.querySelector('.search-input').focus(); scrollTo({top:document.getElementById('shop').offsetTop, behavior:'smooth'})"
+        title="Search">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.35-4.35" />
+        </svg>
+      </button>
+      <button class="nav-icon-btn" onclick="openCart()" title="Cart">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <path d="M16 10a4 4 0 0 1-8 0" />
+        </svg>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">✦ Handcrafted with Nature</p>
+      <h1 class="hero-heading">Pure <em>Care</em><br>for Your Skin</h1>
+      <p class="hero-sub">Small-batch bar soaps made with wild botanicals and skin-loving oils. No sulphates, no fillers
+        — just honest, beautiful soap.</p>
+      <div class="hero-actions">
+        <button class="btn-primary"
+          onclick="scrollTo({top:document.getElementById('shop').offsetTop-80,behavior:'smooth'})">Shop
+          Collection</button>
+        <button class="btn-secondary"
+          onclick="scrollTo({top:document.getElementById('benefits').offsetTop-80,behavior:'smooth'})">Our
+          Promise</button>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num">4.9★</div>
+          <div class="stat-label">Avg Rating</div>
+        </div>
+        <div>
+          <div class="stat-num">12k+</div>
+          <div class="stat-label">Happy Customers</div>
+        </div>
+        <div>
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Natural Ingredients</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-img-grid">
+        <div class="hero-img-cell">
+          <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=600&q=80" alt="Handcrafted soap bar"
+            loading="lazy">
+          <span class="hero-tag">✦ New Arrivals</span>
+        </div>
+        <div class="hero-img-cell">
+          <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&q=80" alt="Natural ingredients"
+            loading="lazy">
+        </div>
+        <div class="hero-img-cell">
+          <img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=400&q=80" alt="Soap collection"
+            loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track" id="marqueeTrack"></div>
+  </div>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar reveal">
+    <div class="trust-item"><span class="trust-icon">🌿</span><span class="trust-text">100% Natural Ingredients</span>
+    </div>
+    <div class="trust-item"><span class="trust-icon">🧪</span><span class="trust-text">Dermatologically Tested</span>
+    </div>
+    <div class="trust-item"><span class="trust-icon">🚚</span><span class="trust-text">Free Shipping over $50</span>
+    </div>
+    <div class="trust-item"><span class="trust-icon">↩️</span><span class="trust-text">30-Day Return Policy</span></div>
+    <div class="trust-item"><span class="trust-icon">🔒</span><span class="trust-text">Secure Checkout</span></div>
+  </div>
+
+  <!-- SHOP -->
+  <section id="shop">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">✦ The Collection</p>
+      <h2 class="section-title">Find Your <em>Perfect</em> Bar</h2>
+      <p class="section-sub">Each bar is handcrafted in small batches, poured with intention and cured for 4–6 weeks for
+        the finest lather.</p>
+    </div>
+    <div class="filter-bar reveal">
+      <div class="filter-pills" id="filterPills"></div>
+      <div class="search-wrap">
+        <span class="search-icon">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg>
+        </span>
+        <input type="text" class="search-input" id="searchInput" placeholder="Search soaps..."
+          oninput="filterProducts()">
+      </div>
+    </div>
+    <div class="products-grid" id="productsGrid"></div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section id="benefits">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">✦ Why MASA</p>
+      <h2 class="section-title">Crafted with <em>Intention</em></h2>
+      <p class="section-sub">We believe what you put on your body matters as much as what you put in it.</p>
+    </div>
+    <div class="benefits-grid reveal">
+      <div class="benefit-card">
+        <div class="benefit-icon">🌱</div>
+        <div class="benefit-title">Purely Plant-Based</div>
+        <div class="benefit-desc">Every ingredient is sourced from nature — no parabens, sulphates, or synthetic
+          fragrances. Just plants, oils, and botanicals.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">⚗️</div>
+        <div class="benefit-title">Small-Batch Craftsmanship</div>
+        <div class="benefit-desc">Made in batches of under 50 bars to guarantee quality you can see and feel.
+          Cold-process method for maximum skin nutrition.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🌍</div>
+        <div class="benefit-title">Earth-Responsible</div>
+        <div class="benefit-desc">Minimal packaging, compostable wraps, and zero microplastics. Every purchase plants
+          one tree in East Africa.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🧬</div>
+        <div class="benefit-title">Skin-Science Backed</div>
+        <div class="benefit-desc">Formulated with dermatologists to ensure optimal pH balance and suitability for all
+          skin types, including sensitive skin.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">✋</div>
+        <div class="benefit-title">Ethically Made</div>
+        <div class="benefit-desc">Produced in a fair-wage facility. We pay our artisans above industry average and
+          support women-led cooperatives.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">💎</div>
+        <div class="benefit-title">Luxury, Accessibly Priced</div>
+        <div class="benefit-desc">Premium artisan soap shouldn't break the bank. We cut the middlemen, not the quality.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INGREDIENTS -->
+  <section id="ingredients">
+    <div class="ingredients-inner">
+      <div class="ingredients-left reveal">
+        <img class="ingredients-img" src="https://images.unsplash.com/photo-1607006483224-34d55f53d9f8?w=600&q=80"
+          alt="Natural soap ingredients" loading="lazy">
+        <div class="ingredients-float">
+          <div class="float-title">Our Promise</div>
+          <div class="float-items">
+            <div class="float-item"><span class="float-dot"></span>Never tested on animals</div>
+            <div class="float-item"><span class="float-dot"></span>No synthetic preservatives</div>
+            <div class="float-item"><span class="float-dot"></span>Biodegradable formula</div>
+            <div class="float-item"><span class="float-dot"></span>Vegan-friendly</div>
+          </div>
+        </div>
+      </div>
+      <div class="ingredients-right reveal">
+        <p class="section-eyebrow">✦ What's Inside</p>
+        <h2 class="section-title">Ingredients You <em>Recognise</em></h2>
+        <p class="section-sub" style="text-align:left;margin-left:0;margin-top:12px;">We list every ingredient with full
+          transparency. If you can't pronounce it, we don't use it.</p>
+        <div class="ingredients-list">
+          <div class="ing-item">
+            <div class="ing-num">01</div>
+            <div class="ing-content">
+              <div class="ing-name">Shea Butter</div>
+              <div class="ing-desc">Rich in vitamins A and E, deeply nourishes and locks in moisture for silky, soft
+                skin.</div>
+            </div>
+          </div>
+          <div class="ing-item">
+            <div class="ing-num">02</div>
+            <div class="ing-content">
+              <div class="ing-name">Activated Charcoal</div>
+              <div class="ing-desc">Draws out toxins and deep-cleanses pores without stripping the skin's natural oils.
+              </div>
+            </div>
+          </div>
+          <div class="ing-item">
+            <div class="ing-num">03</div>
+            <div class="ing-content">
+              <div class="ing-name">Wild Lavender Oil</div>
+              <div class="ing-desc">Calms inflammation, reduces redness, and fills your shower with a natural
+                aromatherapy scent.</div>
+            </div>
+          </div>
+          <div class="ing-item">
+            <div class="ing-num">04</div>
+            <div class="ing-content">
+              <div class="ing-name">Raw Turmeric</div>
+              <div class="ing-desc">A centuries-old brightening remedy that evens skin tone and fights hyperpigmentation
+                naturally.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">✦ Real Stories</p>
+      <h2 class="section-title">Loved by <em>Thousands</em></h2>
+      <p class="section-sub">Don't take our word for it — here's what our community is saying.</p>
+    </div>
+    <div class="testimonials-grid reveal">
+      <div class="testi-card">
+        <span class="testi-tag">Verified Buyer</span>
+        <div class="testi-quote">"</div>
+        <p class="testi-text">I've tried every fancy soap brand out there. MASA is genuinely different — my skin feels
+          hydrated, not stripped. I've been a daily user for 6 months and I'm never going back.</p>
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-author">
+          <div class="testi-avatar">A</div>
+          <div>
+            <div class="testi-name">Amara N.</div>
+            <div class="testi-since">Customer since 2024</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <span class="testi-tag">Best Seller</span>
+        <div class="testi-quote">"</div>
+        <p class="testi-text">The Charcoal Detox Bar cleared my back acne in three weeks. Three weeks! My dermatologist
+          was impressed. The scent is also amazing — earthy and grounding.</p>
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:var(--sage)">K</div>
+          <div>
+            <div class="testi-name">Kofi A.</div>
+            <div class="testi-since">Customer since 2023</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">Bought the bundle as a gift for my mum. She called me three days later to ask where to
+          order more. The packaging is gorgeous and the soaps smell incredible. 10/10.</p>
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:var(--gold)">F</div>
+          <div>
+            <div class="testi-name">Fatima M.</div>
+            <div class="testi-since">Customer since 2024</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUNDLE CTA -->
+  <div id="bundle" class="reveal">
+    <div class="bundle-left">
+      <p class="section-eyebrow" style="margin-bottom:14px">✦ Limited Offer</p>
+      <h2 class="bundle-title">The MASA<br><em>Starter Bundle</em></h2>
+      <p class="bundle-desc">Try our three most-loved bars at a special bundle price. Perfect as a gift or your first
+        step into natural skincare.</p>
+      <div class="bundle-items">
+        <div class="bundle-item"><span class="bundle-check">✓</span>Charcoal Detox Bar</div>
+        <div class="bundle-item"><span class="bundle-check">✓</span>Rose & Honey Glow Bar</div>
+        <div class="bundle-item"><span class="bundle-check">✓</span>Lavender Calm Bar</div>
+        <div class="bundle-item"><span class="bundle-check">✓</span>Handwritten gift card</div>
+        <div class="bundle-item"><span class="bundle-check">✓</span>Free premium linen pouch</div>
+      </div>
+      <button class="btn-primary" onclick="addBundleToCart()">Add Bundle to Cart</button>
+    </div>
+    <div class="bundle-right">
+      <img src="https://images.unsplash.com/photo-1617220325048-ece3b8a0aa5e?w=600&q=80" alt="MASA soap bundle"
+        loading="lazy">
+      <div class="bundle-price-tag">
+        <div class="bundle-save">YOU SAVE 25%</div>
+        <div class="bundle-price-num">$48</div>
+        <div class="bundle-old-price">Was $64</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEWSLETTER -->
+  <section id="newsletter">
+    <div class="newsletter-inner reveal">
+      <p class="section-eyebrow">✦ Join the Ritual</p>
+      <h2 class="section-title">Skin Tips &<br><em>Exclusive Drops</em></h2>
+      <p class="section-sub">Get early access to new launches, behind-the-scenes content, and subscriber-only discounts.
+        No spam, ever.</p>
+      <div class="newsletter-form">
+        <input type="email" class="newsletter-input" placeholder="your@email.com" id="newsletterEmail">
+        <button class="newsletter-btn" onclick="subscribeNewsletter()">Subscribe</button>
+      </div>
+      <p class="newsletter-note">🔒 We respect your privacy. Unsubscribe anytime.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">MASA</div>
+        <p class="footer-tagline">Pure handcrafted bar soap for people who care about what touches their skin. Made with
+          love, for the earth.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-btn" title="Instagram">IG</a>
+          <a href="#" class="social-btn" title="TikTok">TK</a>
+          <a href="#" class="social-btn" title="Pinterest">PT</a>
+          <a href="#" class="social-btn" title="Facebook">FB</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Shop</div>
+        <div class="footer-links">
+          <a href="#shop">All Products</a>
+          <a href="#shop">Best Sellers</a>
+          <a href="#shop">New Arrivals</a>
+          <a href="#bundle">Bundles</a>
+          <a href="#">Gift Cards</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <div class="footer-links">
+          <a href="#">About MASA</a>
+          <a href="#">Our Ingredients</a>
+          <a href="#">Sustainability</a>
+          <a href="#">Blog</a>
+          <a href="#">Careers</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Help</div>
+        <div class="footer-links">
+          <a href="#">FAQ</a>
+          <a href="#">Shipping Policy</a>
+          <a href="#">Returns</a>
+          <a href="#">Track Order</a>
+          <a href="#">Contact Us</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 MASA Soap Co. All rights reserved.</span>
+      <span>Privacy Policy · Terms of Service · Cookie Settings</span>
+    </div>
+  </footer>
+
+  <!-- CART SIDEBAR -->
+  <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <span class="cart-title">Your Cart</span>
+      <button class="cart-close" onclick="closeCart()">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer" id="cartFooter"></div>
+  </div>
+
+  <!-- PRODUCT MODAL -->
+  <div class="modal-overlay" id="modalOverlay" onclick="handleModalOverlayClick(event)">
+    <div class="modal" id="productModal">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-left" id="modalLeft"></div>
+      <div class="modal-right" id="modalRight"></div>
+    </div>
+  </div>
+
+  <!-- MOBILE BOTTOM NAV -->
+  <div class="mobile-nav">
+    <div class="mobile-nav-inner">
+      <a href="#hero" class="mobile-nav-item active">
+        <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+          <polyline points="9 22 9 12 15 12 15 22" />
+        </svg>
+        Home
+      </a>
+      <a href="#shop" class="mobile-nav-item">
+        <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <rect x="2" y="3" width="20" height="14" rx="2" />
+          <line x1="8" y1="21" x2="16" y2="21" />
+          <line x1="12" y1="17" x2="12" y2="21" />
+        </svg>
+        Shop
+      </a>
+      <button class="mobile-nav-item mobile-cart-badge" onclick="openCart()" style="cursor:pointer">
+        <div style="position:relative">
+          <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <path d="M16 10a4 4 0 0 1-8 0" />
+          </svg>
+          <span class="badge-dot" id="mobileBadge">0</span>
+        </div>
+        Cart
+      </button>
+      <button class="mobile-nav-item" onclick="showToast('🧑 Account coming soon!')">
+        <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+          <circle cx="12" cy="7" r="4" />
+        </svg>
+        Profile
+      </button>
+    </div>
+  </div>
+ <!-- TOAST CONTAINER -->
+  <div class="toast-container" id="toastContainer"></div>
+  <script src="function.js"></script>
+</body>
+</html>
